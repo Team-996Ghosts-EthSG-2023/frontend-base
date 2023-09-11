@@ -1,11 +1,59 @@
-import React from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { styled } from 'styled-components';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper } from "swiper/react";
 import { Mousewheel } from 'swiper/modules';
+import VideoCard from '../../../components/VideoCard';
+import { videoUrls } from "./videos";
 
 export const HomeFeed = (props) => {
+  const [videos, setVideos] = useState([]);
+  const videoRefs = useRef([]);
+
+  useEffect(() => {
+    setVideos(videoUrls);
+  }, []);
+
+
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.8, // Adjust this value to change the scroll trigger point
+    };
+
+    // This function handles the intersection of videos
+    const handleIntersection = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const videoElement = entry.target;
+          videoElement.play();
+        } else {
+          const videoElement = entry.target;
+          videoElement.pause();
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, observerOptions);
+
+    // We observe each video reference to trigger play/pause
+    videoRefs.current.forEach((videoRef) => {
+      observer.observe(videoRef);
+    });
+
+    // We disconnect the observer when the component is unmounted
+    return () => {
+      observer.disconnect();
+    };
+  }, [videos]);
+
+  // This function handles the reference of each video
+  const handleVideoRef = (index) => (ref) => {
+    videoRefs.current[index] = ref;
+  };
+
   return(
     <SwipeContainer>
       <StyledSwiper 
@@ -15,15 +63,13 @@ export const HomeFeed = (props) => {
         modules={[Mousewheel]}
         className="mySwiper"
       >
-        <VideoCard style={{background: "red"}}>Slide 1</VideoCard>
-        <VideoCard style={{background: "yellow"}}>Slide 2</VideoCard>
-        <VideoCard style={{background: "grey"}}>Slide 3</VideoCard>
-        <VideoCard style={{background: "green"}}>Slide 4</VideoCard>
-        <VideoCard style={{background: "black"}}>Slide 5</VideoCard>
-        <VideoCard>Slide 6</VideoCard>
-        <VideoCard>Slide 7</VideoCard>
-        <VideoCard>Slide 8</VideoCard>
-        <VideoCard>Slide 9</VideoCard>
+        {videos.map((video, i) => 
+          <VideoCard 
+            key={i}
+            url={video.url}
+            setVideoRef={handleVideoRef(i)}
+          />
+        )}
       </StyledSwiper>
     </SwipeContainer>
   )
@@ -39,20 +85,4 @@ const SwipeContainer = styled.div`
 const StyledSwiper = styled(Swiper)`
 	width: 100%;
 	height: 100%;
-`
-
-const VideoCard = styled(SwiperSlide)`
-	text-align: center;
-	font-size: 18px;
-  display: flex;
-  justify-content: center;
-  align-items: center; 
-
-  
-  & video {
-    display: block;
-    width: 100%;
-    height: 100%; 
-    object-fit: cover;
-  }
 `
