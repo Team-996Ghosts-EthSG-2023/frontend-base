@@ -15,6 +15,12 @@ import "./index.css"
 import { GlobalStyle } from './components/GlobalStyle';
 import { Task } from './pages/App/Campaigns/Task';
 import { CampaignList } from './pages/App/Campaigns/CampainList';
+import {
+  ThirdwebProvider,
+  ConnectWallet,
+  metamaskWallet,
+  localWallet,
+} from "@thirdweb-dev/react";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -34,7 +40,16 @@ const router = createBrowserRouter(
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <GlobalStyle>
-      <RouterProvider router={router} />
+      <ThirdwebProvider
+        activeChain="polygon"
+        clientId={`${import.meta.env.VITE_APP_WEB3_CLIENT_ID}`}
+        supportedWallets={[
+          metamaskWallet(),
+          localWallet(),
+        ]}
+      >
+        <RouterProvider router={router} />
+      </ThirdwebProvider>
     </GlobalStyle>
   </React.StrictMode>
 );

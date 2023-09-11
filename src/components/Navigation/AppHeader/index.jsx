@@ -6,6 +6,7 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import { Avatar, Layout, Button } from "antd";
+import { ConnectWallet } from "@thirdweb-dev/react";
 const { Header } = Layout;
 
 export const HeaderBar = (props) => {
@@ -20,6 +21,10 @@ export const HeaderBar = (props) => {
         {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
       </Button>
       <Gap />
+      <ConnectWallet
+        theme="dark"
+        btnTitle="Connect Wallet"
+      />
       <Button
         shape="circle"
         size="large"
