@@ -5,12 +5,8 @@ import VideoBotInfoBar from "../Navigation/VideoBotInfoBar";
 import VideoSideActionBar from "../Navigation/VideoSideActionBar";
 
 function VideoCard(props) {
-  // const url = useFeedStore.getState().videos;
-  // const { url, setVideoRef, autoplay } = props;
   const { url, username, description, song, likes, shares, comments, saves, profilePic, setVideoRef, autoplay } = props;
-  // const { url, setVideoRef, autoplay } = props;
   const videoRef = useRef(null);
-  console.log(videoRef)
 
   useEffect(() => {
     if (autoplay) {
@@ -40,10 +36,10 @@ function VideoCard(props) {
       />
       <BottomControls>
         <div className="footer-left">
-          <VideoBotInfoBar username={username} description={description} song={song} />
+          <VideoBotInfoBar username={username} description={description} song={song} profilePic={profilePic} />
         </div>
         <div className="footer-right">
-          <VideoSideActionBar likes={likes} shares={shares} comments={comments} saves={saves} profilePic={profilePic} />
+          <VideoSideActionBar likes={likes} shares={shares} comments={comments} saves={saves}  />
         </div>
       </BottomControls>
     </StyledCard>

@@ -1,21 +1,16 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCirclePlus, faCircleCheck, faHeart, faCommentDots, faBookmark, faShare } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faCommentDots, faBookmark, faShare } from '@fortawesome/free-solid-svg-icons';
 import './index.css';
+import { Button } from 'antd';
+import { styled } from 'styled-components';
+import { useNavigate } from 'react-router';
 
-function VideoSideActionBar({ likes, comments, saves, shares, profilePic }) {
-// function VideoSideActionBar() {
-  // const { likes, comments, saves, shares, profilePic } = useFeedStore.getState().currentVideo 
+function VideoSideActionBar({ likes, comments, saves, shares }) {
   const [liked, setLiked] = useState(false);
   const [saved, setSaved] = useState(false);
-  const [userAddIcon, setUserAddIcon] = useState(faCirclePlus);
 
-  const handleUserAddClick = () => {
-    setUserAddIcon(faCircleCheck);
-    setTimeout(() => {
-      setUserAddIcon(null);
-    }, 3000); // Change the delay time (in milliseconds) as needed
-  };
+  const navigate = useNavigate()
 
   // Function to convert likes count to a number
   const parseLikesCount = (count) => {
@@ -42,14 +37,6 @@ function VideoSideActionBar({ likes, comments, saves, shares, profilePic }) {
 
   return (
     <div className="footer-right">
-      <div className="sidebar-icon">
-        {profilePic ? (
-          // Displaying the user profile picture
-          <img src={profilePic} className='userprofile' alt='Profile' style={{ width: '45px', height: '45px', color: '#616161' }} />
-        ) : null}
-        {/* The user add icon */}
-        <FontAwesomeIcon icon={userAddIcon} className='useradd' style={{ width: '15px', height: '15px', color: '#FF0000' }} onClick={handleUserAddClick}/>
-      </div>
       <div className="sidebar-icon">
         {/* The heart icon for liking */}
         <FontAwesomeIcon
@@ -91,12 +78,27 @@ function VideoSideActionBar({ likes, comments, saves, shares, profilePic }) {
         {/* Displaying the number of shares */}
         <p>{shares}</p>
       </div>
-      <div className="sidebar-icon record">
+      <ViewCampaignBtn 
+        type='primary' 
+        size='small'
+        onClick={() => navigate(`/campaign`)}
+      >
+        View Campaign
+      </ViewCampaignBtn>
+      <div className="sidebar-icon record" style={{marginTop: "50px"}}>
         {/* Displaying the record icon */}
         <img src="https://static.thenounproject.com/png/934821-200.png" alt='Record Icon' />
       </div>
     </div>
   );
 }
+
+const ViewCampaignBtn = styled(Button)`
+  margin-top: 0.5rem;
+  margin-right: 1rem;
+  margin-bottom: -1rem;
+  position: absolute;
+  right: 0;
+`
 
 export default VideoSideActionBar;

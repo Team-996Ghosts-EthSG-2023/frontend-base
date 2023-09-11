@@ -1,12 +1,26 @@
-import React from 'react'
+import React from "react";
+import { styled } from "styled-components";
 
-/**
-* @author
-* @function Profile
-**/
+export const Profile = ({username, profilePic}) => {
 
-export const Profile = (props) => {
-  return(
-    <div>Profile</div>
-   )
-  }
+  return (
+    <>
+      <div className="sidebar-icon">
+        {profilePic ? (
+            <ProfileImgStyled 
+              src={profilePic} 
+              className='userprofile' 
+              alt='Profile'
+            />
+          ) : null}
+      </div>
+      <h3>@{username}</h3>
+    </>
+  );
+};
+
+const ProfileImgStyled = styled.img`
+  width: '45px';
+  height: '45px'; 
+  color: '#616161';
+`

@@ -19,7 +19,6 @@ export const HeaderBar = (props) => {
       >
         {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
       </Button>
-      <DemoLogo />
       <Gap />
       <Button
         shape="circle"
@@ -46,13 +45,6 @@ const MenuButtonStyles = {
   marginBottom: "16",
   marginTop: "0.8rem",
 };
-
-const DemoLogo = styled.div`
-  width: 100px;
-  height: 50px;
-  background-color: grey;
-  margin: 0 auto;
-`;
 
 const Gap = styled.div`
   width: 80%;

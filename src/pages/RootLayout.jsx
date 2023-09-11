@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components"
 import {
   DeploymentUnitOutlined,
@@ -26,15 +26,15 @@ function getItem(
 }
 
 const items = [
-  getItem('Feed', 'feed', <CompassOutlined />),
-  getItem('Campaign', 'campaign', <DeploymentUnitOutlined />),
-  getItem('Calendar', 'calendar', <CalendarOutlined />),
+  getItem('Feed', '/feed', <CompassOutlined />),
+  getItem('Campaign', '/campaign', <DeploymentUnitOutlined />),
+  getItem('Calendar', '/calendar', <CalendarOutlined />),
 ];
-
 
 export const RootLayout = (props) => {
   const [collapsed, setCollapsed] = useState(false);
   const navigate = useNavigate()
+  const location = useLocation();
   return (
     <Layout>
       <HeaderBar 
@@ -46,9 +46,10 @@ export const RootLayout = (props) => {
           <Menu 
             theme="dark" 
             defaultSelectedKeys={['feed']} 
+            selectedKeys={[location.pathname === '/' ? '/feed' : location.pathname]}
             mode="inline" 
             items={items} 
-            onClick={(e) => navigate(`/${e.key ?? ''}`)}
+            onClick={(e) => navigate(`${e.key ?? ''}`)}
           />
         </Sider>
         <ContentLayout>
