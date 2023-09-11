@@ -62,9 +62,9 @@ export const RootLayout = (props) => {
             onClick={(e) => navigate(`/${e.key ?? ''}`)}
           />
         </Sider>
-        <Layout>
+        <ContentLayout>
           <Outlet/>
-        </Layout>
+        </ContentLayout>
       </Layout>
     </Layout>
   );
@@ -78,6 +78,11 @@ const MenuButtonStyles = {
   marginBottom: "16",
   marginTop: "0.8rem"
 }
+
+const ContentLayout = styled(Layout)`
+  height: calc(100vh - 64px);
+  background-color: var(--color-hyperdrive-black);
+`
 
 const Gap = styled.div`
   width: 80%;

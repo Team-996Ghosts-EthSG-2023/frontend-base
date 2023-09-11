@@ -1,8 +1,9 @@
+:root {
+	--color-hyperdrive-black: #050b0c;
+	--color-hyperdrive-tan-1: #deece4;
+	--color-hyperdrive-green: #14f195;
+}
 body {
 	margin: 0;
 	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
 }

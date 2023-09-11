@@ -11,6 +11,7 @@ import { RootLayout } from './pages/RootLayout';
 import { HomeFeed } from './pages/App/HomeFeed';
 import { Campaigns } from './pages/App/Campaigns';
 import { Calendar } from 'antd';
+import "./index.css"
 
 const router = createBrowserRouter(
   createRoutesFromElements(
