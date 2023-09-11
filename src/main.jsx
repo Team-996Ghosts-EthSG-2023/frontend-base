@@ -12,6 +12,7 @@ import { HomeFeed } from './pages/App/HomeFeed';
 import { Campaigns } from './pages/App/Campaigns';
 import { Calendar } from 'antd';
 import "./index.css"
+import { GlobalStyle } from './components/GlobalStyle';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,8 +28,8 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    {/* <GlobalStyle> */}
+    <GlobalStyle>
       <RouterProvider router={router} />
-    {/* </GlobalStyle> */}
+    </GlobalStyle>
   </React.StrictMode>
 );
