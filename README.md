@@ -1,1 +1,2 @@
-# frontend-base
+npm i 
+npm run dev
