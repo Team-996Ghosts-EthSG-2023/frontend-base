@@ -81,7 +81,7 @@ function VideoSideActionBar({ likes, comments, saves, shares }) {
       <ViewCampaignBtn 
         type='primary' 
         size='small'
-        onClick={() => navigate(`/campaign`)}
+        onClick={() => navigate(`/campaign/task`)}
       >
         View Campaign
       </ViewCampaignBtn>
