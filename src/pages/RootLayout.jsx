@@ -4,14 +4,12 @@ import styled from "styled-components"
 import {
   DeploymentUnitOutlined,
   CalendarOutlined,
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
   CompassOutlined,
-  UserOutlined,
 } from '@ant-design/icons';
-import { Avatar, Layout, Menu, Button } from 'antd';
+import { Layout, Menu } from 'antd';
+import HeaderBar from "../components/Navigation/AppHeader";
 
-const { Header, Sider } = Layout;
+const { Sider } = Layout;
 
 function getItem(
   label,
@@ -39,19 +37,10 @@ export const RootLayout = (props) => {
   const navigate = useNavigate()
   return (
     <Layout>
-      <HeaderStyled>
-        <Button type="primary" onClick={() => setCollapsed(!collapsed)} style={MenuButtonStyles}>
-          {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-        </Button>
-        <DemoLogo/>
-        <Gap/>
-        <Button 
-          shape="circle"
-          size="large"
-          icon={<Avatar icon={<UserOutlined />} />}
-        >
-        </Button>
-      </HeaderStyled>
+      <HeaderBar 
+        collapsed={collapsed}
+        setCollapsed={setCollapsed}
+      />
       <Layout style={{ minHeight: 'calc(100vh - 64px)' }}>
         <Sider collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
           <Menu 
@@ -70,36 +59,7 @@ export const RootLayout = (props) => {
   );
 };
 
-const MenuButtonStyles = {
-  fontSize: '16px', 
-  color: '#fff',
-  marginLeft: "0.8rem",
-  marginRight: "2rem",
-  marginBottom: "16",
-  marginTop: "0.8rem"
-}
-
 const ContentLayout = styled(Layout)`
   height: calc(100vh - 64px);
   background-color: var(--color-hyperdrive-black);
 `
-
-const Gap = styled.div`
-  width: 80%;
-`
-
-const HeaderStyled = styled(Header)`
-  padding: 5px;
-  display: flex; 
-  justify-content: space-between; 
-`
-
-const DemoLogo = styled.div`
-  width: 100px;
-  height: 50px;
-  background-color: grey;
-  margin: 0 auto;
-`
-
-
-

@@ -1,14 +1,16 @@
 import React, { useRef, useEffect } from "react";
 import styled from "styled-components";
 import { SwiperSlide } from "swiper/react";
+import VideoBotInfoBar from "../Navigation/VideoBotInfoBar";
+import VideoSideActionBar from "../Navigation/VideoSideActionBar";
 
 function VideoCard(props) {
-  const {
-    url,
-    setVideoRef,
-    autoplay,
-  } = props;
+  // const url = useFeedStore.getState().videos;
+  // const { url, setVideoRef, autoplay } = props;
+  const { url, username, description, song, likes, shares, comments, saves, profilePic, setVideoRef, autoplay } = props;
+  // const { url, setVideoRef, autoplay } = props;
   const videoRef = useRef(null);
+  console.log(videoRef)
 
   useEffect(() => {
     if (autoplay) {
@@ -26,8 +28,7 @@ function VideoCard(props) {
 
   return (
     <StyledCard>
-      <video
-        className="player"
+      <Video
         onClick={onVideoPress}
         ref={(ref) => {
           videoRef.current = ref;
@@ -36,10 +37,34 @@ function VideoCard(props) {
         loop
         muted="muted"
         src={url}
-      ></video>
+      />
+      <BottomControls>
+        <div className="footer-left">
+          <VideoBotInfoBar username={username} description={description} song={song} />
+        </div>
+        <div className="footer-right">
+          <VideoSideActionBar likes={likes} shares={shares} comments={comments} saves={saves} profilePic={profilePic} />
+        </div>
+      </BottomControls>
     </StyledCard>
   );
 }
+
+const Video = styled.video`
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: fill ;
+  width: 100%;
+  height: 100%;
+`
+
+const BottomControls = styled.div`
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+  flex: auto
+`
 
 const StyledCard = styled(SwiperSlide)`
   background: red;

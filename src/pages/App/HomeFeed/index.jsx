@@ -6,9 +6,10 @@ import { Swiper } from "swiper/react";
 import { Mousewheel } from 'swiper/modules';
 import VideoCard from '../../../components/VideoCard';
 import { videoUrls } from "./videos";
+import VideoHeader from '../../../components/Navigation/VideoHeader';
 
 export const HomeFeed = (props) => {
-  const [videos, setVideos] = useState([]);
+  const [videos, setVideos] = useState([])
   const videoRefs = useRef([]);
 
   useEffect(() => {
@@ -56,6 +57,7 @@ export const HomeFeed = (props) => {
 
   return(
     <SwipeContainer>
+      <VideoHeader/>
       <StyledSwiper 
         direction={'vertical'}
         slidesPerView={1}
@@ -66,8 +68,17 @@ export const HomeFeed = (props) => {
         {videos.map((video, i) => 
           <VideoCard 
             key={i}
+            username={video.username}
+            description={video.description}
+            song={video.song}
+            likes={video.likes}
+            saves={video.saves}
+            comments={video.comments}
+            shares={video.shares}
             url={video.url}
+            profilePic={video.profilePic}
             setVideoRef={handleVideoRef(i)}
+            autoplay={i === 0}
           />
         )}
       </StyledSwiper>
@@ -85,4 +96,5 @@ const SwipeContainer = styled.div`
 const StyledSwiper = styled(Swiper)`
 	width: 100%;
 	height: 100%;
+  margin-top: -50px;
 `
