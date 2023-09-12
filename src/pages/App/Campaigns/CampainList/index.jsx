@@ -27,7 +27,7 @@ export const CampaignList = (props) => {
   const location = useLocation();
   return(
     <Container>
-      <List
+      <ListContainer
       itemLayout="vertical"
       size="large"
       pagination={{
@@ -67,7 +67,11 @@ export const CampaignList = (props) => {
   )
 }
 
+const ListContainer = styled(List)`
+
+    color: white;
+`
+
 const Container = styled.div`
   padding: 1rem;
-  color: var(--color-hyperdrive-tan-1);
 `

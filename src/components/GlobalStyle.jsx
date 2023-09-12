@@ -12,7 +12,7 @@ export const GlobalStyle = (props) => {
           colorLinkActive: "#293647",
           colorPrimaryHover: "#293647",
           colorText: "#deece4",
-          colorTextDescription: "#deece4",
+        //   colorTextDescription: "#deece4",
           colorBgContainer: "#deece4",
         },
       }}
