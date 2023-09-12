@@ -72,12 +72,17 @@ function VideoSideActionBar({ likes, comments, saves, shares }) {
         {/* Displaying the number of saves */}
         <p>{saved ? saves + 1 : saves}</p>
       </div>
-      <div className="sidebar-icon">
-        {/* The share icon */}
-        <FontAwesomeIcon icon={faShare} style={{ width: '35px', height: '35px', color: 'white' }} />
-        {/* Displaying the number of shares */}
-        <p>{shares}</p>
-      </div>
+      <LinkUnstyled
+        href="https://funups-verify.vercel.app/token-holders?activeView=&address=128736&tokenType=&rawInput=%23%E2%8E%B1Taiko+Research+Contributors%E2%8E%B1%280x22c1f6050e56d2876009903609a2cc3fef83b415+POAP+gnosis+128736%29&inputType=POAP&tokenFilters=&activeViewToken=&activeViewCount=&blockchainType=&sortOrder=&blockchain=gnosis" 
+        target="_blank"
+      >
+        <div className="sidebar-icon">
+          {/* The share icon */}
+          <FontAwesomeIcon icon={faShare} style={{ width: '35px', height: '35px', color: 'white' }} />
+          {/* Displaying the number of shares */}
+          <p>{shares}</p>
+        </div>
+      </LinkUnstyled>
       <ViewCampaignBtn 
         type='primary' 
         size='small'
@@ -99,6 +104,10 @@ const ViewCampaignBtn = styled(Button)`
   margin-bottom: -1rem;
   position: absolute;
   right: 0;
+`
+
+const LinkUnstyled = styled.a`
+  all: unset;
 `
 
 export default VideoSideActionBar;

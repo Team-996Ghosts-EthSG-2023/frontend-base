@@ -20,6 +20,7 @@ import {
   ConnectWallet,
   metamaskWallet,
   localWallet,
+  ChainId,
 } from "@thirdweb-dev/react";
 
 const router = createBrowserRouter(
@@ -41,7 +42,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <GlobalStyle>
       <ThirdwebProvider
-        activeChain="polygon"
+        activeChain={ChainId.Mumbai}
         clientId={`${import.meta.env.VITE_APP_WEB3_CLIENT_ID}`}
         supportedWallets={[
           metamaskWallet(),
